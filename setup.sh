@@ -17,9 +17,15 @@ if [ ! -d "/stacks" ]; then
     exit 1
 fi
 
+
 echo "Checking for docker compose in /stacks..."
-if ! ls /stacks/{docker-compose.{yaml,yml},compose.{yaml,yml}} 2>/dev/null | grep -q .; then
-    echo "Error: No valid docker compose file found in /stacks!"
+# Check for any valid compose file in /stacks
+if [ ! -f "/stacks/docker-compose.yaml" ] && \
+   [ ! -f "/stacks/docker-compose.yml" ] && \
+   [ ! -f "/stacks/compose.yaml" ] && \
+   [ ! -f "/stacks/compose.yml" ]; then
+    echo "Error: No valid compose file found in /stacks!"
+    echo "Checked for: docker-compose.yaml, docker-compose.yml, compose.yaml, compose.yml"
     exit 1
 fi
 
