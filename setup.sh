@@ -46,9 +46,11 @@ cd /stacks || exit 1
 docker compose up -d
 
 # UFW Configuration with reliable input handling
-echo "Setting Allowed ports in UFW"
+echo "Setting allowed ports in UFW"
 ufw allow http
+echo "Port 80/tcp allowed"
 ufw allow 45876/tcp
+echo "Port 45876/tcp allowed"
 
 echo "Starting ufw..."
 ufw enable
