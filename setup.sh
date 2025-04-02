@@ -45,7 +45,7 @@ echo "Starting containers..."
 cd /stacks || exit 1
 docker compose up -d
 
-# UFW Configuration (Fixed quotes)
+# UFW Configuration (Alpine ash-compatible)
 echo "Would you like to configure UFW firewall rules? (y/n)"
 read -r configure_ufw
 
@@ -59,8 +59,7 @@ if [ "$configure_ufw" = "y" ] || [ "$configure_ufw" = "Y" ]; then
     echo "6) 9696/tcp (Prowlarr)"
     echo "7) 8080/tcp (Sabnzbd)"
     echo "8) 8181/tcp (qBittorrent)"
-    echo ""
-    echo "Enter numbers to enable (space-separated):"
+    printf "\nEnter numbers to enable (space-separated): "
     read -r selected_ports
 
     for port in $selected_ports; do
