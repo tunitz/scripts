@@ -17,9 +17,9 @@ if [ ! -d "/stacks" ]; then
     exit 1
 fi
 
-echo "Checking for docker-compose.yaml in /stacks..."
-if [ ! -f "/stacks/docker-compose.yaml" ] && [ ! -f "/stacks/docker-compose.yml" ]; then
-    echo "Error: No docker-compose.yaml or docker-compose.yml found in /stacks!"
+echo "Checking for docker compose in /stacks..."
+if ! ls /stacks/{docker-compose.{yaml,yml},compose.{yaml,yml}} 2>/dev/null | grep -q .; then
+    echo "Error: No valid docker compose file found in /stacks!"
     exit 1
 fi
 
